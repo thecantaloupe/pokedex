@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head.ejs") %>
+
+  <body>
+    <%- include("partials/header.ejs") %>
+    <main>
+        <div>
+            <a href="/pokemon/new"><button>Add a Pokemon</button></a>
+          <% for (poke of data) { %>
+          <article>
+            <!-- <% for(let i = 1; i < 2; i++){ %> -->
+            <a href="/pokemon/<%= poke.id %>">
+              <h7>
+                <%= poke.name %>
+              </h7>
+            </a>
+            <!-- <% } %> -->
+          </article>
+  
+          <% } %>
+        </div>
+      </main>
+  </body>
+</html>
