@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("partials/head.ejs") %>
+    <%- include("./partials/header.ejs") %>
+
+    <body>
+        <div class="container">
+            <div class="sidedata">
+                <h1>Choose your pokemon!</h1>
+                <form action="/pokemon" method="POST">
+                    <p><label>Name:</label> <input type="text" id="name" name="name" /></p><br>
+                    <p><label>ID:</label> <input type="text" id="index" name="index" readonly/></p><br>
+                    <input type="submit" value="Add Pokemon"/>
+                </form>
+            </div>
+            <div class="sideimage">
+                <img src="/images/pokeball.png" id="picture" alt="">
+            </div>
+        </div>
+        <%- include("./partials/footer.ejs") %>
+        </body>
+            
+            <script>
+                let pokemon = '<%-pokename%>'
+                let pokeIdx = '<%-index%>'
+                let pokeImg='<%-img%>'
+                console.log('<%-img%>')
+                var availableTags = pokemon.split(",");
+                var availableTagsCode = pokeIdx.split(",");
+                var avaliableimg =pokeImg.split(","); 
+                $( "#name" ).autocomplete({ 
+                    source: availableTags,
+                    select: function (event, ui) {
+                        var index = availableTags.indexOf(ui.item.value);
+                        $("#index").val(availableTagsCode[index]); 
+                        $("#picture").attr('src',avaliableimg[index]); 
+                    }
+                });
+                
+                const source = document.getElementById('index');
+                const img = document.getElementById('picture');
+                const inputHandler = (function(e) {
+                    var result = data.filter(function(el) {
+                        return el.e.target.value
+                    })
+                    console.log(result)
+                })
+                source.addEventListener('input', inputHandler);
+                source.addEventListener('propertychange', inputHandler);
+                </script>
+
+</html>
+
+
+
+
+ <!-- <script> try another day
+     const source = document.getElementById('source');
+     const name = document.getElementById('name');
+     const inputHandler = function(e) {
+         name.value = e.target.value;
+     }
+     source.addEventListener('input', inputHandler);
+     source.addEventListener('propertychange', inputHandler);
+</script> -->
