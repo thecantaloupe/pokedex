@@ -5,20 +5,22 @@
   <body>
     <%- include("partials/header.ejs") %>
     <main>
-        <div>
-            <a href="/pokemon/new"><button>Add a Pokemon</button></a>
-          <% for (poke of data) { %>
-          <article>
-            <!-- <% for(let i = 1; i < 2; i++){ %> -->
-            <a href="/pokemon/<%= poke.id %>">
-              <h7>
-                <%= poke.name %>
-              </h7>
-            </a>
-            <!-- <% } %> -->
-          </article>
-  
-          <% } %>
+        <div class="indexwrap">
+            <div class="topwrap">
+                <a class="tet" href="/pokemon/new"><button class="button">Add a Pokemon</button></a>
+            </div>
+            <div class="pokelist" >
+            <% for(let i = 0; i < pokemon.length; i++){ %>
+                <fieldset class="fieldIdx">
+                    <legend><%= pokemon[i].name %></legend> 
+                    <img class="sprite" src="<%=pokemon[i].img%>">
+                    <h6>test</h6>
+                    </img>
+                </fieldset>
+                <% } %>
+            </div>
+        </div>
+
         </div>
       </main>
   </body>

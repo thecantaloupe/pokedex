@@ -8,7 +8,7 @@ const methodOverride = require("method-override")
 // Variables
 ////////////////////////////////////////////////
 const PORT = process.env.PORT || 3003
-
+const myPoke = []
 
 ////////////////////////////////////////////////
 // Import Data
@@ -40,18 +40,17 @@ app.get("/", (req, res) => {
 
 
 // Index
+// GET /pokemon
 app.get("/pokemon/", (req, res) => {
-    res.render("index.ejs", { data: pokemon, title: "Pokemon" });
+    res.render("index.ejs", { data: pokemon, title: "Pokemon", pokemon: myPoke });
 });
 
-// GET /pokemon
+
 // Show
-
 // GET /pokemon/:id
-// New
 
+// New
 // GET /pokemon/new
-// Edit
 app.get("/pokemon/new", (req,res) => {
     var pokeNames = []
     var pokeIdx = []
@@ -66,16 +65,25 @@ app.get("/pokemon/new", (req,res) => {
     }
     res.render("new.ejs", { data: pokemon, title: "Pokemon", pokename: pokeNames, index: pokeIdx, img: pokeImg})
 })
-
+// Edit
 // GET /pokemon/:id/edit
+
 // Create
-
 // POST /pokemon
+app.post("/pokemon", (req,res) => {
+    // use id to get pokemon from main array
+    let bod = pokemon.find(el => el.id === req.body.id)
+    // push bod into the array of myPoke
+    myPoke.push(bod)
+    console.log(bod)
+    // redirect (get) to /pokemon
+    res.redirect("/pokemon")
+});
+
 // Update
-
 // PUT /pokemon/:id
-// Destroy
 
+// Destroy
 // DELETE /pokemon/:id
 
 
