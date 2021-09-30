@@ -103,6 +103,10 @@ app.post("/pokemon", (req,res) => {
 // Destroy
 // DELETE /pokemon/:id
 
+// SHOW ROUTES - GETS ONE POKEMON
+app.get("/pokemon/:id", (req, res) => {
+    res.render("show.ejs", { data: pokemon[req.params.id], title: "First - Show Page", color: pokemon[req.params.id].imgcolor, });
+  });
 
 //////////////////////////////////////////////
 // Server Listener

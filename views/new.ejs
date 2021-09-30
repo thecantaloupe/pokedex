@@ -6,9 +6,7 @@
     <body>
         <div class="container">
             <div class="sidedata">
-                <h1>Choose your pokemon!
-                    <%= data[1].imgcolor %>
-                </h1>
+                <h1>Choose your pokemon!</h1>
                 <form action="/pokemon" method="POST">
                     <p><label>Name:</label> <input type="text" id="name" name="name" /></p><br>
                     <p><label>ID:</label> <input type="text" id="index" name="id" readonly/></p><br>
@@ -20,49 +18,49 @@
             </div>
         </div>
         <%- include("./partials/footer.ejs") %>
-        </body>
-            <script>
-                let pokemon = '<%-pokename%>'
-                let pokeIdx = '<%-index%>'
-                let pokeImg='<%-img%>'
-                // Get img dominant color, convert comma separated string into array of decimal colors
-                let holder='<%-imgclr%>'.split(",")
-                let pokeClr= []
-                for (let i = 0; i<holder.length; i++){
-                    let temp = []
-                    temp.push(holder[i])
-                    i++
-                    temp.push(holder[i])
-                    i++
-                    temp.push(holder[i])
-                    pokeClr.push(temp.join(','))
-                }
-                var availableTags = pokemon.split(",");
-                var availableTagsCode = pokeIdx.split(",");
-                var avaliableimg =pokeImg.split(","); 
-                var avaliablecolor = pokeClr
-                console.log(avaliablecolor[0])
-                $( "#name" ).autocomplete({ 
-                    source: availableTags,
-                    select: function (event, ui) {
-                        var index = availableTags.indexOf(ui.item.value);
-                        $("#index").val(availableTagsCode[index]); 
-                        $("#picture").attr('src',avaliableimg[index]); 
-                        $('body').css("background-color","rgb("+avaliablecolor[index]+")");
-                    }
-                });
-                
-                const source = document.getElementById('index');
-                const img = document.getElementById('picture');
-                const inputHandler = (function(e) {
-                    var result = data.filter(function(el) {
-                        return el.e.target.value
-                    })
-                    console.log(result)
-                })
-                source.addEventListener('input', inputHandler);
-                source.addEventListener('propertychange', inputHandler);
-                </script>
+    </body>
+    <script>
+        let pokemon = '<%-pokename%>'
+        let pokeIdx = '<%-index%>'
+        let pokeImg='<%-img%>'
+        // Get img dominant color, convert comma separated string into array of decimal colors
+        let holder='<%-imgclr%>'.split(",")
+        let pokeClr= []
+        for (let i = 0; i<holder.length; i++){
+            let temp = []
+            temp.push(holder[i])
+            i++
+            temp.push(holder[i])
+            i++
+            temp.push(holder[i])
+            pokeClr.push(temp.join(','))
+        }
+        var availableTags = pokemon.split(",");
+        var availableTagsCode = pokeIdx.split(",");
+        var avaliableimg =pokeImg.split(","); 
+        var avaliablecolor = pokeClr
+        console.log(avaliablecolor[0])
+        $( "#name" ).autocomplete({ 
+            source: availableTags,
+            select: function (event, ui) {
+                var index = availableTags.indexOf(ui.item.value);
+                $("#index").val(availableTagsCode[index]); 
+                $("#picture").attr('src',avaliableimg[index]); 
+                $('body').css("background-color","rgb("+avaliablecolor[index]+")");
+            }
+        });
+        
+        const source = document.getElementById('index');
+        const img = document.getElementById('picture');
+        const inputHandler = (function(e) {
+            var result = data.filter(function(el) {
+                return el.e.target.value
+            })
+            console.log(result)
+        })
+        source.addEventListener('input', inputHandler);
+        source.addEventListener('propertychange', inputHandler);
+        </script>
 
 </html>
 

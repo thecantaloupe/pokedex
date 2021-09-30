@@ -13,8 +13,11 @@
             <% for(let i = 0; i < pokemon.length; i++){ %>
                 <fieldset class="fieldIdx">
                     <legend><%= pokemon[i].name %></legend> 
-                    <img class="sprite" src="<%=pokemon[i].img%>">
-                    <h6>test</h6>
+                    <a href="/pokemon/<%=i%>">
+                        <img class="sprite" src="<%=pokemon[i].img%>">
+                    </a>
+                    <h6>Description:<br><%=pokemon[i].misc.classification%></h6>
+                    <a href="/pokemon/<%= i %>/edit">EDIT</a>
                     </img>
                 </fieldset>
                 <% } %>

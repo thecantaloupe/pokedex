@@ -83,6 +83,8 @@ img.sprite {
 }
 fieldset.fieldIdx{
     background-color: #e14318;
+    overflow: scroll;
+    max-width: 100px;
 }
 fieldset {
     border: 1px solid #ccc;
@@ -100,8 +102,9 @@ legend {
     color: black;
 }
 h6 {
-    border: 0;
-    padding: 0;
+    border: 0px;
+    padding: 0px;
+    margin-block-end: 1em;
 }
 
 /* styling for the form in new ejs form */
@@ -121,5 +124,15 @@ label {
     display: table-cell; 
 }
 input { 
+    display: table-cell; 
+}
+
+.tab  { 
+    display: table;
+}
+.tab-row     { 
+    display: table-row;  
+}
+.tab-cell { 
     display: table-cell; 
 }

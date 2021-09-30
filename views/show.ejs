@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("partials/head.ejs") %>
+    <%- include("./partials/header.ejs") %>
+
+    <body>
+        <div class="container">
+            <div class="sidedata">
+                <h1>You chose <%=data.name%>!</h1>
+                <div class="tab">
+                    <div class="tab-row">
+                        <label>Name:&emsp;</label> 
+                        <div class="tab-cell">test</div>
+                    </div>
+                    <br>
+                    <div class="tab-row">
+                        <label>ID:&emsp;</label> 
+                        <div class="tab-cell">test</div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div class="sideimage">
+                <img src="<%=data.img%>" id="picture" alt="">
+            </div>
+        </div>
+        <%- include("./partials/footer.ejs") %>
+    </body>
+    <script>
+        let pokeclr='<%-color%>'
+        $('body').css("background-color","rgb("+pokeclr+")");
+    </script>
