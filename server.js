@@ -4,6 +4,8 @@
 require("dotenv").config() // Load ENV Variables
 const express = require("express") // import express
 const methodOverride = require("method-override")
+const ColorThief = require('colorthief');
+
 ////////////////////////////////////////////////
 // Variables
 ////////////////////////////////////////////////
@@ -15,6 +17,18 @@ const myPoke = []
 ////////////////////////////////////////////////
 // Import fruits data
 const pokemon = require("./models/pokemon.js")
+
+const pokecolor = () => {
+    for (let i = 0; i < pokemon.length; i++){
+        let img = pokemon[i].img
+        ColorThief.getColor(img)
+            .then(color => { 
+                pokemon[i].imgcolor = color })
+            .catch(err => { console.log(err) })
+    }
+}
+pokecolor()
+
 
 /////////////////////////////////////////////////
 // Create our Express Application Object
@@ -55,6 +69,7 @@ app.get("/pokemon/new", (req,res) => {
     var pokeNames = []
     var pokeIdx = []
     var pokeImg = []
+    var pokeClr = []
     for (poke of pokemon) {
         if (poke.name.indexOf('\'') >=0){
             poke.name = poke.name.replace("'","")
@@ -62,11 +77,13 @@ app.get("/pokemon/new", (req,res) => {
         pokeNames.push(poke.name)
         pokeIdx.push(poke.id)
         pokeImg.push(poke.img)
+        pokeClr.push(poke.imgcolor)
     }
-    res.render("new.ejs", { data: pokemon, title: "Pokemon", pokename: pokeNames, index: pokeIdx, img: pokeImg})
+    res.render("new.ejs", { data: pokemon, title: "Pokemon", pokename: pokeNames, index: pokeIdx, img: pokeImg, imgclr: pokeClr})
 })
 // Edit
 // GET /pokemon/:id/edit
+
 
 // Create
 // POST /pokemon
