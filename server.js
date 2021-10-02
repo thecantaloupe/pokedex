@@ -59,10 +59,6 @@ app.get("/pokemon/", (req, res) => {
     res.render("index.ejs", { data: pokemon, title: "Pokemon", pokemon: myPoke });
 });
 
-
-// Show
-// GET /pokemon/:id
-
 // New
 // GET /pokemon/new
 app.get("/pokemon/new", (req,res) => {
@@ -81,9 +77,34 @@ app.get("/pokemon/new", (req,res) => {
     }
     res.render("new.ejs", { data: pokemon, title: "Pokemon", pokename: pokeNames, index: pokeIdx, img: pokeImg, imgclr: pokeClr})
 })
-// Edit
-// GET /pokemon/:id/edit
+// Destroy
+// DELETE /pokemon/:id
+app.delete("/pokemon/:id", (req,res) => {
+    myPoke.splice(req.params.id,1)
+    res.redirect("/pokemon")
+})
 
+// Update
+// PUT /pokemon/:id
+app.put("/pokemon/:id", (req, res) => {
+        //update mypoke
+        let oldpoke = myPoke[req.params.id]
+        let oldpokem = myPoke[req.params.id].misc
+        let oldpokes = myPoke[req.params.id].stats
+        let updates = req.body
+        console.log(updates)
+        oldpoke.name = updates.name
+        oldpokem.height = updates.height
+        oldpokem.classification = updates.classification
+        oldpokes.hp = updates.hp
+        oldpokes.attack = updates.attack
+        oldpokes.defense = updates.defense
+        oldpokes.spattack = updates.spattack
+        oldpokes.spdefense = updates.spdefense
+        oldpokes.speed = updates.speed
+        // REDIRECT THEM BACK TO INDEX
+        res.redirect("/pokemon")
+})
 
 // Create
 // POST /pokemon
@@ -92,20 +113,24 @@ app.post("/pokemon", (req,res) => {
     let bod = pokemon.find(el => el.id === req.body.id)
     // push bod into the array of myPoke
     myPoke.push(bod)
-    console.log(bod)
     // redirect (get) to /pokemon
     res.redirect("/pokemon")
 });
 
-// Update
-// PUT /pokemon/:id
-
-// Destroy
-// DELETE /pokemon/:id
+// Edit
+// GET /pokemon/:id/edit
+app.get("/pokemon/:id/edit", (req, res) => {
+    res.render("edit.ejs", {
+        data: myPoke[req.params.id],
+        index: req.params.id,
+        title: "Pokedex - Edit Page",
+        color: myPoke[req.params.id].imgcolor,
+    })
+})
 
 // SHOW ROUTES - GETS ONE POKEMON
 app.get("/pokemon/:id", (req, res) => {
-    res.render("show.ejs", { data: pokemon[req.params.id], title: "First - Show Page", color: pokemon[req.params.id].imgcolor, });
+    res.render("show.ejs", { data: myPoke[req.params.id], title: "First - Show Page", color: myPoke[req.params.id].imgcolor, });
   });
 
 //////////////////////////////////////////////

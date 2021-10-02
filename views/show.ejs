@@ -7,17 +7,82 @@
         <div class="container">
             <div class="sidedata">
                 <h1>You chose <%=data.name%>!</h1>
-                <div class="tab">
+                <div  class="tab">
                     <div class="tab-row">
                         <label>Name:&emsp;</label> 
-                        <div class="tab-cell">test</div>
+                        <div class="tab-cell"><%=data.name%></div>
                     </div>
                     <br>
                     <div class="tab-row">
                         <label>ID:&emsp;</label> 
-                        <div class="tab-cell">test</div>
+                        <div class="tab-cell"><%=data.id%></div>
                     </div>
                     <br>
+                    <div class="tab-row">
+                        <label>Height:&emsp;</label> 
+                        <div class="tab-cell"><%=data.misc.height%></div>
+                    </div>
+                    <br>
+                    <div class="tab-row">
+                        <label>Weight:&emsp;</label> 
+                        <div class="tab-cell"><%=data.misc.weight%></div>
+                    </div>
+                    <br>
+                    <div class="tab-row">
+                        <label>Classification:&emsp;</label> 
+                        <div class="tab-cell"><%=data.misc.classification%></div>
+                    </div>
+                    <br>
+                    <div class="tab-row">
+                        <label>ID:&emsp;</label> 
+                        <div class="tab-cell"><%=data.id%></div>
+                    </div>
+                    <br>
+                </div>
+                <hr>
+                <br>
+                <div  class="tab">
+                    <div class="tab-row">
+                        <label> <strong>Stats:&emsp;</strong> </label> 
+                    </div>
+                    <br>
+                    <% for (key in data.stats) { %>
+                    <div class="tab-row">
+                        <label><%=key%>:&emsp;</label> 
+                        <div class="tab-cell"><%=data.stats[key]%></div>
+                    </div>
+                    <br>
+                <%}%>
+                </div>
+                <hr>
+                <div class="tab">
+                    <div class="tab-row">
+                        <label> <strong>Match-ups:&emsp;</strong> </label> 
+                    </div>
+                    <br>
+                    <div class="tab-row">
+                        <label>Super weak to:&emsp;</label> 
+                        <% for (key in data.damages) { %>
+                            <% if (data.damages[key] > 2 ) { %>
+                        <div class="tab-cell"><%=key%>&emsp;</div>
+                        <%}}%>
+                    </div>
+                    <br>
+                    <div class="tab-row">
+                        <label>Weak against:&emsp;</label> 
+                        <% for (key in data.damages) { %>
+                            <% if (data.damages[key] > 1 && data.damages[key] < 4) { %>
+                        <div class="tab-cell"><%=key%>&emsp;</div>
+                        <%}}%>
+                    </div>
+                    <br>
+                    <div class="tab-row">
+                        <label>Strong against:&emsp;</label> 
+                        <% for (key in data.damages) { %>
+                            <% if (data.damages[key] < 1) { %>
+                        <div class="tab-cell"><%=key%>&emsp;</div>
+                        <%}}%>
+                    </div>
                 </div>
             </div>
             <div class="sideimage">

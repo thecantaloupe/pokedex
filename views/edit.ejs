@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("partials/head.ejs") %>
+    <%- include("./partials/header.ejs") %>
+
+    <body>
+        <div class="container">
+            <div class="sidedata">
+                <h1>Edit your pokemon!</h1>
+                <form action="/pokemon/<%= index %>?_method=PUT" method="POST">
+                    <p><label>Name:</label> <input type="text" id="name" name="name"value="<%=data.name%>" /></p><br>
+                    <p><label>Height:</label> <input type="text" id="name" name="id"value="<%=data.id%>" /></p><br>
+                    <p><label>Weight:</label> <input type="text" id="name" name="height"value="<%=data.misc.height%>" /></p><br>
+                    <p><label>Classification:</label> <input type="text" id="name" name="classification"value="<%=data.misc.classification%>" /></p><br><hr>
+                    <% for (key in data.stats) { %>
+                        <p><label><%=key%>:&emsp;</label> <input type="text" id="name" name="<%=key%>"value="<%=data.stats[key]%>" /></p><br>
+                        <%}%>
+                    <input type="submit" value="Edit Pokemon"/>
+                </form>
+            </div>
+            <div class="sideimage">
+                <img src="<%=data.img%>" id="picture" alt="">
+            </div>
+        </div>
+        <%- include("./partials/footer.ejs") %>
+    </body>
+    <script>
+        let pokeclr='<%-color%>'
+        $('body').css("background-color","rgb("+pokeclr+")");
+    </script>
+
+</html>
+
+
+
+
+ <!-- <script> try another day
+     const source = document.getElementById('source');
+     const name = document.getElementById('name');
+     const inputHandler = function(e) {
+         name.value = e.target.value;
+     }
+     source.addEventListener('input', inputHandler);
+     source.addEventListener('propertychange', inputHandler);
+</script> -->
